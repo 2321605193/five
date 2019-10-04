@@ -1,6 +1,195 @@
-div {
-    height: 100px;
-    width: 100px;
-    border: 1px solid fuchsia;
-    color: red;
+.head {
+    width: 100%;
+    //height: 267px;
+}
+
+.headTop {
+    width: 100%;
+    height: 45px;
+    border-bottom: 1px solid #eaeaea;
+    & a {
+        color: #666666;
+    }
+    &_left {
+        width: 250px;
+        height: 45px;
+        float: left;
+    }
+    &_left li {
+        float: left;
+        width: 70px;
+        padding-right: 10px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 13px;
+        & a:hover {
+            color: red;
+        }
+    }
+    &_right {
+        width: 600px;
+        height: 45px;
+        float: right;
+    }
+    &_right li {
+        float: left;
+        width: 95px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 13px;
+        & a:hover {
+            color: red;
+        }
+    }
+    &_img {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 2px;
+        vertical-align: middle;
+    }
+}
+
+.img1 {
+    background: url('../img/icon1.jpg');
+}
+
+.img2 {
+    background: url('../img/icon2.jpg');
+}
+
+.img3 {
+    background: url('../img/icon3.jpg');
+}
+
+.img4 {
+    background: url('../img/icon4.jpg');
+}
+
+.img5 {
+    background: url('../img/icon5.jpg');
+}
+
+.headCenter {
+    height: 125px;
+    padding-top: 40px;
+    box-sizing: border-box;
+    &_logo {
+        display: inline-block;
+        width: 240px;
+        height: 60px;
+        float: left;
+        vertical-align: middle;
+    }
+    &_search {
+        width: 612px;
+        height: 44px;
+        box-sizing: border-box;
+        border: 2px solid #eb3434;
+        float: left;
+        padding-left: 10px;
+        margin-left: 60px;
+    }
+    &_input input {
+        width: 498px;
+        float: left;
+        height: 40px;
+        border: none;
+        outline: none;
+        font-size: 30px;
+    }
+    &_text {
+        width: 100px;
+        float: left;
+        height: 40px;
+        line-height: 40px;
+        color: white;
+        background: #eb3434;
+        text-align: center;
+        border: none;
+        outline: none;
+    }
+    &_icon {
+        width: 490px;
+        height: 44px;
+        float: right;
+        ul li {
+            float: left;
+            height: 44px;
+            line-height: 44px;
+            color: #3c3c3c;
+            font-size: 20px;
+            margin-right: 35px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    &_img {
+        width: 44px;
+        height: 44px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+}
+
+.redBox {
+    background: #eb3434;
+}
+
+.headBottom {
+    width: 100%;
+    height: 96px;
+    border-bottom: 1px solid #eaeaea;
+    &_redUl {
+        height: 50px;
+        li {
+            height: 50px;
+            line-height: 50px;
+            padding: 0 20px;
+            text-align: center;
+            color: white;
+            float: left;
+            font-size: 18px;
+            position: relative;
+            &:hover {
+                background: #c7000b;
+            }
+            &.current {
+                background: #c7000b;
+            }
+        }
+    }
+    &_three {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: 5px solid transparent;
+        border-bottom: 5px solid #fff;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: none;
+        &--current {
+            display: inline-block;
+        }
+    }
+    &_whiteUl {
+        height: 46px;
+        li {
+            height: 46px;
+            line-height: 46px;
+            padding: 0 10px;
+            text-align: center;
+            color: #000;
+            float: left;
+            font-size: 16px;
+            &:hover {
+                color: #c7000b;
+                font-weight: bold;
+            }
+        }
+    }
 }
