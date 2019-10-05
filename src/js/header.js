@@ -7,12 +7,14 @@ $(function() {
                 top: 0,
             })
             $('.head').css('margin-bottom', $('.headBottom').height());
+            $('.headBottom_navsearch').show();
         } else {
             $('.headBottom').css({
                 position: 'static',
                 top: 0,
             })
             $('.head').css('margin-bottom', 0);
+            $('.headBottom_navsearch').hide();
         }
     })
 
