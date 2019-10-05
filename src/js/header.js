@@ -5,6 +5,7 @@ $(function() {
             $('.headBottom').css({
                 position: 'fixed',
                 top: 0,
+                zIndex: 10,
             })
             $('.head').css('margin-bottom', $('.headBottom').height());
             $('.headBottom_navsearch').show();
@@ -12,6 +13,7 @@ $(function() {
             $('.headBottom').css({
                 position: 'static',
                 top: 0,
+                zIndex: 0,
             })
             $('.head').css('margin-bottom', 0);
             $('.headBottom_navsearch').hide();
@@ -32,14 +34,41 @@ $(function() {
          
             <li>母婴</li>
             <li>美妆</li>`
-            $('.headBottom_whiteUl').html(str)
+            $('.headBottom_whiteUl').html(str);
+            $('.fengding').show().siblings().hide();
+        } else if ($(this).index() == 1) {
+            var str = `   <li>全部商品</li>
+            <li>家居</li>
+            <li>女装</li>
+           
+            <li>男装</li>
+            <li>美食</li>
+         
+            <li>母婴</li>
+            <li>美妆</li>`
+            $('.headBottom_whiteUl').html(str);
+            $('.baoyou').show().siblings().hide();
+        } else if ($(this).index() == 4) {
+            var str = `   <li>全部商品</li>
+            <li>家居</li>
+            <li>女装</li>
+           
+            <li>男装</li>
+            <li>美食</li>
+         
+            <li>母婴</li>
+            <li>美妆</li>`
+            $('.headBottom_whiteUl').html(str);
+            $('.zhuangchuang').show().siblings().hide();
         } else if ($(this).index() == 6) {
             var str = `  
             <li>家居</li>
             <li>女装</li>
             <li>母婴</li>
             <li>美妆</li>`
-            $('.headBottom_whiteUl').html(str)
+            $('.headBottom_whiteUl').html(str);
+
+            $('.fengqiang').show().siblings().hide();
         } else if ($(this).index() == 3) {
             var str = `  
             <li>全部商品</li>
@@ -51,7 +80,8 @@ $(function() {
             <li>数码</li>
             <li>母婴</li>
             <li>美妆</li>`
-            $('.headBottom_whiteUl').html(str)
+            $('.headBottom_whiteUl').html(str);
+            $('.fengqiang').show().siblings().hide();
         } else {
             var str = `  
             <li>全部商品</li>
@@ -63,7 +93,9 @@ $(function() {
                 <li>数码</li>
                 <li>母婴</li>
                 <li>美妆</li>`
-            $('.headBottom_whiteUl').html(str)
+            $('.headBottom_whiteUl').html(str);
+
+            $('.shouye').show().siblings().hide();
         }
     })
 })

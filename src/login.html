@@ -6,27 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/lib/jquery.idcode.css">
     <script src="./js/libs/jquery-1.12.3.js"></script>
-    <script src="./js/index.js"></script>
-
-
-
+    <script src="./js/libs/jquery.idcode.js"></script>
+    <script src="./js/libs/validate/jquery.validate.js"></script>
+    <script src="./js/libs/layer/layer.js"></script>
+    <script src="./js/libs/jquery.cookie.js"></script>
+    <script src="./js/comment.js"></script>
+    <script src="./js/login.js"></script>
 
 </head>
 
 <body>
-    <div class="header">
+    <div class="userHeader">
 
     </div>
 
     <div class="main">
 
-        登录页
+        <div class="formDiv clearFixed">
+            <p class="saoma ">扫码登录</p>
+            <p class="zhanhao current">账号登录</p>
+
+            <div class="login1 clearFixed">
+                <img class='ewm' src="./img/ewm6.png" alt="">
+                <div class="sao">
+                    <img src="./img/sao.png" alt="">
+                    <span>打开微信扫一扫</span>
+                </div>
+                <button class="disabled" disabled>扫码登录</button>
+            </div>
+
+            <div class="login2">
+                <form action="">
+                    <p><span class="txt">用户名：</span><input name="uname" type="text"></p>
+                    <p><span class="txt">密码：</span><input name="upwd" type="password"></p>
+                    <p>
+                        <span class="txt">验证码：</span><input name='uyzm' type="text" id="Txtidcode" class="txtVerification"><span id="idcode"></span>
+                    </p>
+                    <p>
+                        <input type="checkBox">下次自动登录
+                        <a href="javascript:void(0)">忘记密码?</a>
+                    </p>
+
+                    <button class="disabled">账号登录</button>
+                </form>
+            </div>
+        </div>
 
     </div>
 
-    <div class="footer">
+    <div class="userFooter">
 
 
 
@@ -34,5 +65,8 @@
 
 
 </body>
+<script>
+    $.idcode.setCode();
+</script>
 
 </html>

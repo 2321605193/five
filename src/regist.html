@@ -6,10 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/lib/jquery.idcode.css">
+    <link rel="stylesheet" href="./css/register.css">
+    <script src="./js/libs/jquery-1.12.3.js"></script>
+    <script src="./js/comment.js"></script>
+    <script src="./js/libs/jquery.idcode.js"></script>
+    <script src="./js/libs/validate/jquery.validate.js"></script>
+    <script src="./js/libs/layer/layer.js"></script>
+    <script src="./js/libs/jquery.cookie.js"></script>
+    <script src="./js/register.js"></script>
 </head>
 
 <body>
-    注册页
+    <div class="userHeader">
+
+    </div>
+
+    <div class="main clearFixed">
+        <div class="loginLink">已有账号,<a href="./login.html">立即登录</a></div>
+        <form action="">
+            <p><span class="textLeft">用户名:</span> <input name='uname' type="text"></p>
+            <p><span class="textLeft">密码:</span> <input id='upwd' name="upwd" type="password"></p>
+            <p><span class="textLeft">确认密码:</span> <input name="reupwd" type="password"></p>
+            <p>
+                <span class="textLeft">性别:</span>
+                <input name="usex" type="radio" value="男">男
+                <input name="usex" type="radio" value="女" checked>女
+            </p>
+            <p><span class="textLeft">手机号码:</span> <input name='utel' type="text"></p>
+            <p><span class="textLeft">邮箱:</span> <input name='uaddress' type="text"></p>
+            <p>
+                <span class="textLeft">验证码:</span>
+                <input name='uyzm' type="text" id="Txtidcode" class="txtVerification">
+                <span id="idcode"></span>
+            </p>
+
+            <button class="btn">注册</button>
+        </form>
+
+        <img class="banner" src="./img/banner3_v2.png" alt="">
+    </div>
+
+    <div class="userFooter">
+
+
+
+    </div>
+
+
 </body>
+
 
 </html>
