@@ -1,6 +1,23 @@
 ;
 (function() {
     $(function() {
+
+
+        $('.formDiv').on('click', '.saoma', function(evt) {
+            $(this).addClass('current').siblings('p').removeClass('current').end().siblings('.login1').show().end().siblings('.login2').hide();
+
+        })
+        $('.formDiv').on('click', '.zhanhao', function(evt) {
+            $(this).addClass('current').siblings('p').removeClass('current').end().siblings('.login2').show().end().siblings('.login1').hide();
+
+        })
+
+
+
+
+
+
+        //表单事件
         $('form').validate({
             submitHandler: function() {
                 var obj = {

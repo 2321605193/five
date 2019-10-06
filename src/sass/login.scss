@@ -1,6 +1,5 @@
 .formDiv {
     width: 360px;
-    height: 300px;
     border: 1px solid #dddddd;
     box-shadow: 5px 5px 5px #dddddd;
     margin: 100px;
@@ -36,7 +35,6 @@
     margin: auto;
     padding-top: 10px;
     background: #dddddd;
-    display: none;
 }
 
 .login1 .ewm {
@@ -44,6 +42,11 @@
     height: 200px;
     display: block;
     margin: 20px auto;
+}
+
+.login2 {
+    // width: 320px;
+    display: none;
 }
 
 .sao {
