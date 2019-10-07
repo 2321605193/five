@@ -94,6 +94,7 @@ $(function() {
                     return false;
                 }
                 users.push(obj);
+                //不加密
                 $.cookie.raw = true;
                 $.cookie('users', JSON.stringify(users), { expires: 10 })
 

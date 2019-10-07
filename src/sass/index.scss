@@ -42,12 +42,15 @@
         border: 1px solid #dddddd;
         position: relative;
         float: left;
-        margin: 10px 0 0 10px;
+        margin: 10px 60px 0 0;
         display: inline-block;
         & img {
             width: 300px;
             height: 300px;
             vertical-align: top;
+        }
+        &:nth-child(4n+1) {
+            margin-left: 40px;
         }
     }
     &_intr {

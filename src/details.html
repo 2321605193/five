@@ -6,16 +6,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/comment.css">
+    <link rel="stylesheet" href="./css/detail.css">
     <script src="./js/libs/jquery-1.12.3.js"></script>
+    <script src="./js/libs/jquery.fly.min.js"></script>
+    <script src="./js/libs/requestAnimationFrame.js"></script>
+    <script src="./js/libs/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="./css/car.css">
     <script src="./js/comment.js"></script>
+    <script src="./js/detail.js"></script>
+
+
 </head>
 
 <body>
 
     <div class="header"></div>
-    <div class="main">详情页</div>
+    <div class="main">
+        <div class="detail clearFixed">
+            <div class="detailLeft clearFixed">
+                <div class="detailLeft_left">
+                    <div class="detailLeft_imgBox">
+                        <img class="smallImg" src="./img/s2.jpg" alt="">
+                        <div class="smallArea"></div>
+                    </div>
+
+                    <div class="bigImgBox">
+                        <img class="bigImg" src="./img/s2.jpg" alt="">
+                    </div>
+                    <ul class="imgList">
+                        <li><img src="./img/s2.jpg" alt=""></li>
+                        <li><img src="./img/s3.jpg" alt=""></li>
+                    </ul>
+                </div>
+
+
+                <div class="detailLeft_right">
+                    <h3>《中国机长》12元电影代金券</h3>
+                    <p>
+                        <span class="detail_declare">价格</span>
+                        <span class="detail_spec">￥<span class="detail_price">9.90</span></span>
+                    </p>
+                    <p>
+                        <span class="detail_declare">运费</span>
+                        <span>浙江杭州 至  <span>中国&or;</span></span>
+                    </p>
+                    <p>
+                        <span class="detail_declare">面值</span>
+                        <span>12元</span>
+                    </p>
+
+
+                    <ul>
+                        <li>
+                            <span class="">月销量</span>
+                            <span class="detail_redTxt">6.5万+</span>
+                        </li>
+                        <li>
+                            <span class="">累计评价</span>
+                            <span class="detail_redTxt">1150</span>
+                        </li>
+                        <li>
+                            <span class="">送天猫积分</span>
+                            <span class="detail_greenTxt">4</span>
+                        </li>
+                    </ul>
+
+
+                    <p class="top">
+                        <span class="detail_declare">适用电影类型</span>
+                        <span class="detail_redBox">2D/3D通兑</span>
+                    </p>
+                    <p class="top">
+                        <span class="detail_declare">适用观影时间</span>
+                        <span class="detail_redBox">平日（含周末）</span>
+                    </p>
+                    <p class="top">
+                        <span class="detail_declare">提货方式</span>
+                        <span class="detail_redBox">电子兑换券</span>
+                    </p>
+                    <p>
+                        <span class="detail_declare">有效期</span>
+                        <span class="detail_spe">购买成功7天内有效</span>
+                    </p>
+
+
+                    <div class="countBox">
+                        <span class="detail_declare fl">数量</span>
+                        <input type="text" class="countInt fl">
+                        <div class="count ">
+                            <button class="add">&and;</button>
+                            <button class="minus">&or;</button>
+                        </div>
+                        <span class="detail_spe">件</span>
+                        <span class="detail_spe">库存91485件（每人限购5件）</span>
+                    </div>
+
+                    <p class="last">
+                        <span class="detail_declare"></span>
+                        <button>立即购买</button>
+                        <button class="addCar">加入购物车</button>
+                    </p>
+                </div>
+            </div>
+            <div class="detailRight"></div>
+        </div>
+
+    </div>
     <div class="carList"></div>
     <div class="footer"></div>
+    <div id="msg">已成功加入购物车！</div>
+
+
 </body>
+
 
 </html>
