@@ -5,7 +5,7 @@ $(function() {
     $(".footer").load("./footer.html");
 
     $(".userHeader").load("./userheader.html");
-    $(".userFooter").load("./footer.html");
+    $(".userFooter").load("./userfooter.html");
     $('.carList').load('./car.html');
 
 

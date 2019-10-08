@@ -15,7 +15,6 @@
     <script src="./js/libs/jquery.cookie.js"></script>
     <script src="./js/comment.js"></script>
     <script src="./js/login.js"></script>
-
 </head>
 
 <body>
@@ -40,14 +39,14 @@
 
             <div class="login2 clearFixed">
                 <form action="">
-                    <p><span class="txt">用户名：</span><input name="uname" type="text"></p>
-                    <p><span class="txt">密码：</span><input name="upwd" type="password"></p>
+                    <p><span class="txt">用户名：</span><input class="uname" name="uname" type="text"></p>
+                    <p><span class="txt">密码：</span><input class="upwd" name="upwd" type="password"></p>
                     <p>
                         <span class="txt">验证码：</span><input name='uyzm' type="text" id="Txtidcode" class="txtVerification"><span id="idcode"></span>
                     </p>
                     <p>
-                        <input type="checkBox">下次自动登录
-                        <a href="javascript:void(0)">忘记密码?</a>
+                        <input class="check" type="checkBox">下次自动登录
+                        <a href="./regist.html">没有账号立即注册?</a>
                     </p>
 
                     <button class="disabled">账号登录</button>

@@ -36,6 +36,16 @@
             }
         }
     }
+    &_position {
+        display: inline-block;
+        height: 92px;
+        padding: 10px;
+        background: #000;
+        color: #fff;
+        position: absolute;
+        top: 0;
+        right: 20px;
+    }
     &_right {
         width: 280px;
         height: 100%;
@@ -56,35 +66,59 @@
         bottom: 0;
         margin: auto;
         & li {
+            display: block;
             padding: 10px 0;
             font-size: 18px;
             text-align: center;
             color: #fff;
+            position: relative;
             &:hover {
                 background: #eb3434;
             }
+            & .car_position {
+                display: inline-block;
+                width: 90px;
+                height: 30px;
+                line-height: 30px;
+                padding: 0 10px;
+                background: #000;
+                color: #fff;
+                position: absolute;
+                top: 0;
+                right: 35px;
+                z-index: 50;
+            }
+            & .p_three {
+                width: 0;
+                height: 0;
+                position: absolute;
+                top: 0;
+                right: -25px;
+                border: 15px solid transparent;
+                border-left: 10px solid red;
+            }
         }
-        & li span {
+        & li span:nth-child(2) {
             display: inline-block;
             width: 35px;
             height: 35px;
         }
-        & li:first-child span {
+        & li:first-child span:last-of-type {
             background: url('../img/head.png') no-repeat;
             background-size: 25px 25px;
             background-position: 5px 5px;
         }
-        & li:nth-child(3) span {
+        & li:nth-child(3) span:last-of-type {
             background: url('../img/rmb.png') no-repeat;
             background-size: 25px 25px;
             background-position: 5px 5px;
         }
-        & li:nth-child(4) span {
+        & li:nth-child(4) span:last-of-type {
             background: url('../img/star.png') no-repeat;
             background-size: 25px 25px;
             background-position: 5px 5px;
         }
-        & li:nth-child(5) span {
+        & li:nth-child(5) span:last-of-type {
             background: url('../img/sj.png') no-repeat;
             background-size: 25px 25px;
             background-position: 5px 5px;

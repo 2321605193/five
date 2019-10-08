@@ -1,6 +1,9 @@
 ;
 (function() {
     $(function() {
+        var use = JSON.parse($.cookie('remeber') || '{}');
+        $('.uname').val(use.uname);
+        $('.upwd').val(use.upwd);
 
 
         $('.formDiv').on('click', '.saoma', function(evt) {
@@ -11,10 +14,6 @@
             $(this).addClass('current').siblings('p').removeClass('current').end().siblings('.login2').show().end().siblings('.login1').hide();
 
         })
-
-
-
-
 
 
         //表单事件
@@ -46,6 +45,16 @@
                         return false;
                     } else {
                         layer.msg('登录成功');
+                        var check = $('.check').prop('checked');
+                        if (check) {
+                            $.cookie.raw = true;
+                            $.cookie('remeber', JSON.stringify(obj), { expires: 10 })
+                        } else {
+                            use = JSON.parse($.cookie('remeber') || '{}');
+                            if (use.uname == obj.uname) {
+                                $.cookie('remeber', JSON.stringify(obj), { expires: -10 });
+                            }
+                        }
                         window.location = "./index.html";
                     }
                 }

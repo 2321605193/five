@@ -2,6 +2,18 @@ var toggle = true; //ture为展开
 (function() {
 
     $(function() {
+
+
+
+
+        // var cartop = $('.car_position').parent().height()
+        // $('.car_position').css({ top: cartop });
+
+        // $('.car_ul').on('mouseenter', 'li', function() {
+
+        // })
+
+
         var cookieData = JSON.parse($.cookie('cars') || '[]');
 
         cookieData.forEach(element => {
@@ -13,7 +25,6 @@ var toggle = true; //ture为展开
 
                 for (let i = 0; i < $('.car_left--product').find('input').length; i++) {
                     if ($('.car_left--product').find('input')[i].checked) {
-                        console.log(1111)
                         count++;
                         var inp = $('.car_left--product').find('input')[i];
                         var num = $(inp).siblings('.product').find('.product_count')[0].innerHTML;
@@ -27,6 +38,9 @@ var toggle = true; //ture为展开
                 } else {
                     $('.sumBtn').css('background', '#ff0036')
                 }
+
+                sum = sum.toFixed(2);
+
                 $('.carBottom_count').text(count);
                 $('.carBottom_priceNUm').text(sum);
 
@@ -49,19 +63,12 @@ var toggle = true; //ture为展开
             toggle = true;
             $('.toggleCar').removeClass('bg');
         });
-
-
-
-
-
-
         $('.all').click(function() {
             $('.car_left--product').find('input').prop('checked', $(this).prop('checked'));
             var count = 0;
             var sum = 0;
             for (let i = 0; i < $('.car_left--product').find('input').length; i++) {
                 if ($('.car_left--product').find('input')[i].checked) {
-                    console.log(1111)
                     count++;
                     var inp = $('.car_left--product').find('input')[i];
                     var num = $(inp).siblings('.product').find('.product_count')[0].innerHTML;
@@ -69,21 +76,15 @@ var toggle = true; //ture为展开
                     sum += num * price;
                 }
             }
-
             if (count == 0) {
                 $('.sumBtn').css('background', '#666')
             } else {
                 $('.sumBtn').css('background', '#ff0036')
             }
+            sum = sum.toFixed(2);
             $('.carBottom_count').text(count);
             $('.carBottom_priceNUm').text(sum);
         })
-
-
-
-
-
-
 
         function carList() {
             if (toggle) {
