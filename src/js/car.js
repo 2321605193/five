@@ -5,17 +5,19 @@ var toggle = true; //ture为展开
 
 
 
+        $('.car_ul').on('mouseenter', 'li', function() {
+            var cartop = $(this).height() + 20 - $(this).find('.car_position').height();
 
-        // var cartop = $('.car_position').parent().height()
-        // $('.car_position').css({ top: cartop });
-
-        // $('.car_ul').on('mouseenter', 'li', function() {
-
-        // })
+            $(this).find('.car_position').css({ top: cartop / 2 });
+            $(this).find('.car_position').stop().fadeIn(100).animate({ right: 35 }, 500);
+        })
+        $('.car_ul').on('mouseleave', 'li', function() {
+            $(this).find('.car_position').stop().animate({ right: 60 }, 500).fadeOut(100);
+        })
 
 
         var cookieData = JSON.parse($.cookie('cars') || '[]');
-
+        $('.car_List').html('');
         cookieData.forEach(element => {
 
             loadData(element);
@@ -34,9 +36,13 @@ var toggle = true; //ture为展开
                 }
 
                 if (count == 0) {
-                    $('.sumBtn').css('background', '#666')
+                    $('.sumBtn').css('background', '#666').prop({
+                        'disabled': true
+                    })
                 } else {
-                    $('.sumBtn').css('background', '#ff0036')
+                    $('.sumBtn').css('background', '#ff0036').prop({
+                        'disabled': false
+                    });
                 }
 
                 sum = sum.toFixed(2);
@@ -77,9 +83,13 @@ var toggle = true; //ture为展开
                 }
             }
             if (count == 0) {
-                $('.sumBtn').css('background', '#666')
+                $('.sumBtn').css('background', '#666').prop({
+                    'disabled': true
+                })
             } else {
-                $('.sumBtn').css('background', '#ff0036')
+                $('.sumBtn').css('background', '#ff0036').prop({
+                    'disabled': false
+                });
             }
             sum = sum.toFixed(2);
             $('.carBottom_count').text(count);
@@ -98,6 +108,12 @@ var toggle = true; //ture为展开
                 return;
             }
         }
+
+
+
+        $('.sumBtn').on('click', function() {
+            location.assign('./carList.html');
+        })
 
     })
 })()

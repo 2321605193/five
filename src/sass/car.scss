@@ -56,6 +56,16 @@
         padding-bottom: 90px;
         position: relative;
     }
+    &_List {
+        width: 280px;
+        height: 100%;
+        background: #e6e6e6;
+        float: left;
+        overflow-y: scroll;
+        box-sizing: border-box;
+        padding-bottom: 90px;
+        position: relative;
+    }
     &_ul {
         width: 35px;
         height: 500px;
@@ -85,17 +95,18 @@
                 color: #fff;
                 position: absolute;
                 top: 0;
-                right: 35px;
+                right: 60px;
                 z-index: 50;
+                display: none;
             }
             & .p_three {
                 width: 0;
                 height: 0;
                 position: absolute;
-                top: 0;
-                right: -25px;
-                border: 15px solid transparent;
-                border-left: 10px solid red;
+                top: 9px;
+                right: -17px;
+                border: 7px solid transparent;
+                border-left: 10px solid #000;
             }
         }
         & li span:nth-child(2) {
@@ -150,10 +161,10 @@
     }
     &_count {
         color: #999999;
-        margin-right: 40px;
     }
     &_price {
         color: #666666;
+        float: right;
     }
 }
 

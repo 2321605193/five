@@ -59,6 +59,13 @@
             color: #333333;
             font-size: 12px;
             float: left;
+            & a {
+                width: 150px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: inline-block;
+            }
             &:last-of-type {
                 color: #666666;
                 float: right;
