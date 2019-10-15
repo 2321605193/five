@@ -124,6 +124,61 @@ $(function() {
             loadData($('.commondityList'), carList);
         }
 
+        var sum = 0;
+        var count = 0;
+        for (let i = 0; i < $('.commondityList').find('input[type="checkbox"]').length; i++) {
+            if ($('.commondityList').find('input[type="checkbox"]')[i].checked) {
+                var inp = $('.commondityList').find('input[type="checkbox"]')[i]
+                count++;
+                sum += Number($(inp).parents('.commondity').find('.figure').text().trim())
+            }
+        }
+        if (count >= 1) {
+            $('.carList_total').addClass('bg');
+        } else {
+            $('.carList_total').removeClass('bg');
+        }
+        $('.all').find('input').prop('checked', count == $('.commondityList').find('input[type="checkbox"]').length);
+        $('.carList_totalPrice').text(sum.toFixed(2));
+    })
 
+    $('.all').children('input').on('click', function() {
+        $('.commondity').find('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
+        var sum = 0;
+        var count = 0;
+        for (let i = 0; i < $('.commondityList').find('input[type="checkbox"]').length; i++) {
+            if ($('.commondityList').find('input[type="checkbox"]')[i].checked) {
+                var inp = $('.commondityList').find('input[type="checkbox"]')[i]
+                count++;
+                sum += Number($(inp).parents('.commondity').find('.figure').text().trim())
+            }
+        }
+        if (count >= 1) {
+            $('.carList_total').addClass('bg');
+        } else {
+            $('.carList_total').removeClass('bg');
+        }
+        $('.all').find('input').prop('checked', count == $('.commondityList').find('input[type="checkbox"]').length);
+        $('.carList_totalPrice').text(sum.toFixed(2));
+    })
+    $('.commondity').on('click', function() {
+        var sum = 0;
+        var count = 0;
+        for (let i = 0; i < $('.commondityList').find('input[type="checkbox"]').length; i++) {
+            if ($('.commondityList').find('input[type="checkbox"]')[i].checked) {
+                var inp = $('.commondityList').find('input[type="checkbox"]')[i]
+                count++;
+                sum += Number($(inp).parents('.commondity').find('.figure').text().trim())
+            }
+        }
+        if (count >= 1) {
+            $('.carList_total').addClass('bg');
+        } else {
+            $('.carList_total').removeClass('bg');
+        }
+
+        $('.all').find('input').prop('checked', count == $('.commondityList').find('input[type="checkbox"]').length);
+
+        $('.carList_totalPrice').text(sum.toFixed(2));
     })
 })
