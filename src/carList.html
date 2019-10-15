@@ -7,33 +7,62 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>我的购物车</title>
     <link rel="stylesheet" href="./css/comment.css">
+    <link rel="stylesheet" href="./css/carList.css">
     <script src="./js/libs/jquery-1.12.3.js"></script>
     <script src="./js/libs/jquery.cookie.js"></script>
-
     <script src="./js/comment.js"></script>
+    <script src="./js/carList.js"></script>
 </head>
 
 <body>
     <div class="header"></div>
 
-    <div class="main clearFixed">
+    <div class="main clearFixed ">
         <div class="carList_line1">
-            <ul class="carList_top fl">
-                <li>
+            <ul class="carList_top fl clearFixed">
+                <li class="liHover">
                     <span>全部商品</span>
-                    <span class="top_red"></span>
+                    <span class="top_red">9</span>
                 </li>
                 <li>
                     <span>降价商品</span>
-                    <span class="top_red"></span>
+                    <span class="top_red">9</span>
                 </li>
                 <li>
-                    <span>全部商品</span>
+                    <span>库存紧张</span>
                     <span class="top_red"></span>
                 </li>
-
             </ul>
+            <div class="carList_right fr">
+                <span>已选商品（不含运费）</span>
+                <span class="carList_totalPrice">0.00</span>
+                <button class="carList_total">结算</button>
+            </div>
         </div>
+        <div class="carList_line2 clearFixed">
+            <div class="all">
+                <input type="checkbox">全选
+            </div>
+            <div class="merchandise">
+                商品信息
+            </div>
+            <div class="unitPrice">
+                单价
+            </div>
+            <div class="count">
+                数量
+            </div>
+            <div class="figure">
+                金额
+            </div>
+            <div class="operation">
+                操作
+            </div>
+        </div>
+        <div class="commondityList">
+
+        </div>
+
     </div>
     <div class="footer"></div>
 

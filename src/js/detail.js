@@ -191,6 +191,9 @@ function loadData(obj) {
         })
 
         $('.countInt').on('input', function() {
+            if (isNaN($(this).val())) {
+                $('.countInt').val(1);
+            }
             if ($(this).val() > commod.pur) {
                 $('.countInt').val(commod.pur);
             }
@@ -212,6 +215,11 @@ function loadData(obj) {
                 });
 
                 var offset = $(".toggleCar").offset(); //结束的地方的元素
+                $(window).resize(function() {
+                    offset = $(".toggleCar").offset();
+
+                })
+
 
                 //飞
                 flyer.fly({
@@ -223,7 +231,7 @@ function loadData(obj) {
                     //终点
                     end: {
                         left: offset.left,
-                        top: offset.top,
+                        top: offset.top - $(document).scrollTop(),
                         width: 0,
                         height: 0
                     },
@@ -249,22 +257,21 @@ function loadData(obj) {
                         //------------------------------------------------------------------------------------------
                         //存入cookie
                         var car = JSON.parse($.cookie('cars') || '[]');
-                        var carflag = false;
-                        car.forEach((el) => {
+
+                        car.forEach((el, index, car) => {
                             if (el.name == obj.name) {
-                                el.count = obj.count;
-                                carflag = true;
+                                car.splice(index, 1);
                             }
                         })
 
-                        if (!carflag) {
-                            car.push(obj);
-                        }
+                        car.unshift(obj);
+
                         $('.car_List').html('');
                         car.forEach((el) => {
-                                loadData(el);
-                            })
-                            //渲染数据
+                            loadData(el);
+                        })
+
+                        //渲染数据
 
 
                         $('.car_left--product>input').on('click', function() {
@@ -333,7 +340,7 @@ function loadData(obj) {
 
         $('.banner').append(firstLi);
         var lengthLi = $('.banner>li').length;
-        console.log(lengthLi);
+
 
         function autoPlay() {
 

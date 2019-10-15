@@ -51,9 +51,7 @@
         height: 100%;
         background: #e6e6e6;
         float: left;
-        overflow-y: scroll;
         box-sizing: border-box;
-        padding-bottom: 90px;
         position: relative;
     }
     &_List {
@@ -61,10 +59,13 @@
         height: 100%;
         background: #e6e6e6;
         float: left;
-        overflow-y: scroll;
+        overflow-y: auto;
         box-sizing: border-box;
-        padding-bottom: 90px;
+        padding-bottom: 150px;
         position: relative;
+        &::-webkit-scrollbar {
+            width: 0px;
+        }
     }
     &_ul {
         width: 35px;
@@ -169,7 +170,7 @@
 }
 
 .carBottom {
-    width: 263px;
+    width: 280px;
     height: 86px;
     background: #fff;
     position: absolute;
