@@ -90,8 +90,6 @@ function loadData(obj) {
         }
 
 
-
-
         strRight += `<div class="countBox">
            <span class="detail_declare fl">数量</span>
            <input type="text" class="countInt fl">
@@ -102,7 +100,6 @@ function loadData(obj) {
            <span class="detail_spe">件</span>
            <span class="detail_spe">库存${commod.inventory}件（每人限购${commod.pur}件）</span>
        </div>
-
        <p class="last">
            <span class="detail_declare"></span>
            <button>立即购买</button>
@@ -110,22 +107,21 @@ function loadData(obj) {
        </p> </div>`
 
 
+
         $('.detailLeft_right').append($(strRight)[0])
-
-
         $('.countInt').val('1');
+        commod.imgList.forEach((el) => {
+            $('.imgList').append($(`  <li><img src="${el}" alt=""></li>"`))
+        })
         $('.detailLeft_imgBox').mouseenter(function() {
             $('.bigImgBox').show();
             $('.smallArea').show();
             $('.detailLeft_imgBox').mousemove(function(evt) {
-
                 var mx = evt.pageX - $('.detailLeft_imgBox').offset().left - $('.smallArea').width() / 2;
                 var my = evt.pageY - $('.detailLeft_imgBox').offset().top - $('.smallArea').height() / 2;
-
                 if (mx <= 0) {
                     mx = 0;
                 }
-
                 if (mx >= $('.detailLeft_imgBox').width() - $('.smallArea').width()) {
                     mx = $('.detailLeft_imgBox').width() - $('.smallArea').width();
                 }

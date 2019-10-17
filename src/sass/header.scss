@@ -230,4 +230,25 @@
             cursor: pointer;
         }
     }
+    //------
+    &_afterPrise {
+        height: 15px;
+        line-height: 15px;
+        color: #c7000b;
+        font-size: 10px;
+        background: yellow;
+        text-align: center;
+        position: relative;
+        top: -19px;
+        left: -5px;
+        display: inline-block;
+        &--three {
+            border: 3px solid transparent;
+            border-right: 3px solid yellow;
+            position: absolute;
+            left: -3px;
+            bottom: -3px;
+            transform: rotate(45deg)
+        }
+    }
 }

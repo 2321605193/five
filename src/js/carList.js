@@ -31,7 +31,6 @@ $(function() {
                     </p>
                 </div>
                 <div class="count">
-            
                     <p class="clearFixed">
                         <button class="minu">-</button>
                         <input class="countInt" type="text" value="${el.count}">
@@ -110,6 +109,41 @@ $(function() {
         })
         $.cookie('cars', JSON.stringify(carList), { expires: 10 })
     })
+    var cur = 0;
+    $('.countInt').on('focus', function() {
+        cur = $(this).val();
+
+    })
+
+    $('.countInt').on('input', function() {
+        if (isNaN($(this).val())) {
+            $(this).val(cur);
+        }
+        var pur = $(this).parent().siblings().find('.pur').text();
+        if ($(this).val() > Number(pur)) {
+            $(this).val(pur);
+        }
+        var currentCount = $(this).val();
+        var price = $(this).parents('.count').siblings('.unitPrice').find('.unitPrice_price').text();
+
+        $(this).parents('.count').siblings('.figure').text((currentCount * price).toFixed(2));
+        carList = JSON.parse($.cookie('cars') || '[]');
+
+        var uname = $(this).parents('.count').siblings('.merchandise').find('.uname').text();
+
+
+        carList.forEach((el) => {
+            if (el.name == uname) {
+                el.count = currentCount
+            }
+        })
+        $.cookie('cars', JSON.stringify(carList), {
+            expires: 10
+        });
+
+        $('.commondity').triggerHandler('click');
+    })
+
 
     $('.delet').on('click', function() {
         var uname = $(this).parents('.commondity').find('.uname').text();
