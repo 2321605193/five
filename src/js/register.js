@@ -78,37 +78,71 @@ $(function() {
                 layer.msg('验证码错误！')
                 return false;
             } else {
-                var obj = {
-                    uname: $('[name="uname"]').val(),
-                    upwd: $('[name="upwd"]').val(),
-                    usex: $('[name="usex"]').val(),
-                    utel: $('[name="utel"]').val(),
-                    uaddress: $('[name="uaddress"]').val(),
-                }
-
-                var users = JSON.parse($.cookie('users') || '[]');
-
-                var flag = users.some((el) => el.uname == obj.uname)
-                if (flag) {
-                    layer.alert('用户名已注册!');
-                    return false;
-                }
-                users.push(obj);
-                //不加密
-                $.cookie.raw = true;
-                $.cookie('users', JSON.stringify(users), { expires: 10 })
 
 
-                layer.confirm("注册成功,是否立即去登录?", {
-                    skin: 'layui-layer-molv',
-                    type: 1,
-                    btn: ["yes", "noyes"]
-                }, (index) => {
-                    layer.close(index);
-                    window.location = "./login.html"
+
+                var formData = new FormData();
+                // var obj = {
+                //     uname: $('[name="uname"]').val(),
+                //     upwd: $('[name="upwd"]').val(),
+                //     usex: $('[name="usex"]').val(),
+                //     utel: $('[name="utel"]').val(),
+                //     uaddress: $('[name="uaddress"]').val(),
+                // }
+                // formData.append("userInfo", obj);
 
 
-                }, () => {})
+                formData.append("uname", $('[name="uname"]').val());
+                formData.append("upwd", $('[name="upwd"]').val());
+                formData.append("usex", $('[name="usex"]').val());
+                formData.append("utel", $('[name="utel"]').val());
+                formData.append("uaddress", $('[name="uaddress"]').val());
+
+                $.ajax({
+                    url: './api/reg',
+                    data: formData,
+                    type: 'post',
+                    processData: false,
+                    contentType: false
+                }).done(function(res) {
+                    console.log(res);
+                    if (res.status == 2) {
+                        layer.confirm("注册成功,是否立即去登录?", {
+                            skin: 'layui-layer-molv',
+                            type: 1,
+                            btn: ["yes", "noyes"]
+                        }, (index) => {
+                            layer.close(index);
+                            window.location = "./login.html"
+                        }, () => {})
+                    } else {
+                        layer.msg(res.msg)
+                    }
+                })
+
+
+                // var users = JSON.parse($.cookie('users') || '[]');
+                // var flag = users.some((el) => el.uname == obj.uname)
+                // if (flag) {
+                //     layer.alert('用户名已注册!');
+                //     return false;
+                // }
+                // users.push(obj);
+                // //不加密
+                // $.cookie.raw = true;
+                // $.cookie('users', JSON.stringify(users), { expires: 10 })
+
+
+                // layer.confirm("注册成功,是否立即去登录?", {
+                //     skin: 'layui-layer-molv',
+                //     type: 1,
+                //     btn: ["yes", "noyes"]
+                // }, (index) => {
+                //     layer.close(index);
+                //     window.location = "./login.html"
+
+
+                // }, () => {})
             }
 
 

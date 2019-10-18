@@ -1,72 +1,121 @@
 $(function() {
-    var data = [{
-        name: '南极人男士内裤纯棉平角裤', //名字
-        price: 26.9, //价格
-        img: './img/s1.jpg', //图片
-        oldPrice: 219, //原价格
-        class: 's1', //类名
-        iconImg: './img/T.png', //原链接
-        inventory: 94254, //库存
-        people: 154, //购买人数
-        integral: 4, //积分
-        pur: 5 //限购
-    }, {
-        name: '《中国机长》12元电影代金券', //名字
-        price: 9.9, //价格
-        img: './img/s2.jpg', //图片
-        oldPrice: 30, //原价格
-        class: 's2', //类名
-        iconImg: './img/taobao.png', //原链接
-        inventory: 25, //库存
-        people: 4578, //购买人数
-        integral: 2, //积分
-        pur: 2 //限购
-    }, {
-        name: '全面覆盖 满屏保护', //名字
-        price: 1999, //价格
-        img: './img/s3.jpg', //图片
-        oldPrice: 2699, //原价格
-        class: 's3', //类名
-        iconImg: './img/T.png', //原链接
-        inventory: 94254, //库存
-        people: 7895, //购买人数
-        integral: 100, //积分
-        pur: 10 //限购
-    }, {
-        name: '英菲格雅保温杯男大容量保温壶2L', //名字
-        price: 19.9, //价格
-        img: './img/s4.jpg', //图片
-        oldPrice: 168, //原价格
-        class: 's4', //类名
-        iconImg: './img/T.png', //原链接
-        inventory: 548, //库存
-        people: 6788, //购买人数
-        integral: 4, //积分
-        pur: 20 //限购
-    }, {
-        name: '变色水杯网红创意玻璃杯子', //名字
-        price: 1.56, //价格
-        img: './img/s5.jpg', //图片
-        oldPrice: 219, //原价格
-        class: 's5', //类名
-        iconImg: './img/taobao.png', //原链接
-        inventory: 894465, //库存
-        people: 878, //购买人数
-        integral: 1, //积分
-        pur: 6 //限购
-    }, {
-        name: '打底裤女加绒秋冬款人丝袜加厚肉色光腿神器', //名字
-        price: 14.9, //价格
-        img: './img/s6.jpg', //图片
-        oldPrice: 78, //原价格
-        class: 's6', //类名
-        iconImg: './img/taobao.png', //原链接
-        inventory: 1441, //库存
-        people: 35, //购买人数
-        integral: 3, //积分
-        imgList: ['./img/s61.jpg', './img/s62.jpg', './img/s63.jpg'], //图片
-        pur: 3 //限购
-    }]
+    // var data = [{
+    //     name: '南极人男士内裤纯棉平角裤', //名字
+    //     price: 26.9, //价格
+    //     img: './img/s1.jpg', //图片
+    //     oldPrice: 219, //原价格
+    //     class: 's1', //类名
+    //     iconImg: './img/T.png', //原链接
+    //     inventory: 94254, //库存
+    //     people: 154, //购买人数
+    //     integral: 4, //积分
+    //     pur: 5 //限购
+    // }, {
+    //     name: '《中国机长》12元电影代金券', //名字
+    //     price: 9.9, //价格
+    //     img: './img/s2.jpg', //图片
+    //     oldPrice: 30, //原价格
+    //     class: 's2', //类名
+    //     iconImg: './img/taobao.png', //原链接
+    //     inventory: 25, //库存
+    //     people: 4578, //购买人数
+    //     integral: 2, //积分
+    //     pur: 2 //限购
+    // }, {
+    //     name: '全面覆盖 满屏保护', //名字
+    //     price: 1999, //价格
+    //     img: './img/s3.jpg', //图片
+    //     oldPrice: 2699, //原价格
+    //     class: 's3', //类名
+    //     iconImg: './img/T.png', //原链接
+    //     inventory: 94254, //库存
+    //     people: 7895, //购买人数
+    //     integral: 100, //积分
+    //     pur: 10 //限购
+    // }, {
+    //     name: '英菲格雅保温杯男大容量保温壶2L', //名字
+    //     price: 19.9, //价格
+    //     img: './img/s4.jpg', //图片
+    //     oldPrice: 168, //原价格
+    //     class: 's4', //类名
+    //     iconImg: './img/T.png', //原链接
+    //     inventory: 548, //库存
+    //     people: 6788, //购买人数
+    //     integral: 4, //积分
+    //     pur: 20 //限购
+    // }, {
+    //     name: '变色水杯网红创意玻璃杯子', //名字
+    //     price: 1.56, //价格
+    //     img: './img/s5.jpg', //图片
+    //     oldPrice: 219, //原价格
+    //     class: 's5', //类名
+    //     iconImg: './img/taobao.png', //原链接
+    //     inventory: 894465, //库存
+    //     people: 878, //购买人数
+    //     integral: 1, //积分
+    //     pur: 6 //限购
+    // }, {
+    //     name: '打底裤女加绒秋冬款人丝袜加厚肉色光腿神器', //名字
+    //     price: 14.9, //价格
+    //     img: './img/s6.jpg', //图片
+    //     oldPrice: 78, //原价格
+    //     class: 's6', //类名
+    //     iconImg: './img/taobao.png', //原链接
+    //     inventory: 1441, //库存
+    //     people: 35, //购买人数
+    //     integral: 3, //积分
+    //     imgList: ['./img/s61.jpg', './img/s62.jpg', './img/s63.jpg'], //图片
+    //     pur: 3 //限购
+    // }]
+
+    var data = [];
+    $.ajax({
+        url: './api/getData',
+        type: 'post',
+    }).done((res) => {
+
+        data = res.data;
+
+        data.forEach(el => {
+            var arr = el.imgList.split(',');
+            el.imgList = arr;
+        })
+
+        shangping($('.shouye'), createArr(data.length, data.length));
+    })
+
+    var strUserStatus = ``;
+    var userName = JSON.parse($.cookie('user') || "{}");
+    if (!$.cookie('user')) {
+        strUserStatus = `<a href="./login.html">马上登录 &or;</a>`
+    } else {
+        strUserStatus = `  <div class="user_div ">
+        <span class='spanLive'>${userName.uname} &or;</span>
+        <p class='user_div_p'><button>退出登录</button></p>
+    </div>`
+    }
+    $('.userStatus').html(strUserStatus);
+
+    $('.user_div_p').on('click', 'button', function() {
+        $.ajax({
+            url: "./api/quit",
+            type: 'get',
+        }).then((res) => {
+            console.log(res);
+            if (res.status == 100) {
+                var strUserStatus = `<a href="./login.html">马上登录 &or;</a>`;
+                $('.userStatus').html(strUserStatus);
+                $.cookie('remeber', '', { expires: -10 });
+                $.cookie('user', '', { expires: -10 });
+            }
+        })
+    })
+    $('.user_div').on('mouseenter', function() {
+        $(this).addClass('userStatus_div');
+    }).on('mouseleave', function() {
+        $(this).removeClass('userStatus_div');
+    })
+
     $(document).on('scroll', function() {
         if ($(document).scrollTop() >= 170) {
             $('.headBottom').css({
@@ -178,7 +227,7 @@ $(function() {
         } else {
             arr.forEach((el) => {
                 var str = `<li class="section_box clearFixed">
-                <a href="./details.html">
+                <a href="./details.html?id=${data[el].pid}">
                     <img class="${data[el].class}" src="${data[el].img}" alt="">
                 </a>
                 <p class="section_intr clearFixed"><span><a href="./details.html">${data[el].name}</a></span> <span>${data[el].people}人买</span></p>
@@ -270,7 +319,7 @@ $(function() {
         return [...set];
     }
 
-    shangping($('.shouye'), createArr(data.length, data.length));
+
 
     $('.headCenter_text').on('click', function() {
         var inp = $('.searchInt').val();
@@ -281,7 +330,7 @@ $(function() {
             }
         })
         shangping($('.shouye'), searchArr);
-        $('.searchInt').val("");
+
     })
 
 

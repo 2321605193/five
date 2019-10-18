@@ -38,25 +38,44 @@
                     layer.msg('验证码错误！')
                     return false;
                 } else {
-                    var users = JSON.parse($.cookie('users') || '[]');
-                    var flag = users.some((el) => el.uname == obj.uname && el.upwd == obj.upwd)
-                    if (!flag) {
-                        layer.msg('用户名或密码错误');
-                        return false;
-                    } else {
-                        layer.msg('登录成功');
-                        var check = $('.check').prop('checked');
-                        if (check) {
-                            $.cookie.raw = true;
-                            $.cookie('remeber', JSON.stringify(obj), { expires: 10 })
-                        } else {
-                            use = JSON.parse($.cookie('remeber') || '{}');
-                            if (use.uname == obj.uname) {
-                                $.cookie('remeber', JSON.stringify(obj), { expires: -10 });
+
+                    $.ajax({
+                        url: './api/login',
+                        type: 'post',
+                        data: obj,
+                    }).done((res) => {
+
+                        if (res.status == 1) {
+                            layer.msg(res.msg);
+
+                            var userCookie = {
+                                uid: Math.random().toString(36).substring(2, 5) + res.data[0].uid + Math.random().toString(36).substring(2, 20),
+                                keys: Math.random().toString(36).substring(2, 20),
+                                uname: res.data[0].uname
                             }
+
+                            console.log(res.data);
+                            console.log(userCookie);
+                            $.cookie('user', JSON.stringify(userCookie), { expires: 10 });
+
+                            var check = $('.check').prop('checked');
+                            if (check) {
+                                $.cookie('remeber', JSON.stringify(obj), { expires: 10 });
+                            } else {
+                                use = JSON.parse($.cookie('remeber') || '{}');
+                                if (use.uname == obj.uname) {
+                                    $.cookie('remeber', JSON.stringify(res.data), { expires: -10 });
+                                }
+                            }
+                            setTimeout(() => {
+                                window.location = "./index.html"
+                            }, 1500);
+                        } else {
+                            layer.msg(res.msg);
                         }
-                        window.location = "./index.html";
-                    }
+                    })
+
+
                 }
                 return false;
             }
