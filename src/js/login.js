@@ -11,12 +11,9 @@
 
         })
         $('.formDiv').on('click', '.zhanhao', function(evt) {
-            $(this).addClass('current').siblings('p').removeClass('current').end().siblings('.login2').show().end().siblings('.login1').hide();
-
-        })
-
-
-        //表单事件
+                $(this).addClass('current').siblings('p').removeClass('current').end().siblings('.login2').show().end().siblings('.login1').hide();
+            })
+            //表单事件
         $('form').validate({
             submitHandler: function() {
                 var obj = {
@@ -49,13 +46,12 @@
                             layer.msg(res.msg);
 
                             var userCookie = {
-                                uid: Math.random().toString(36).substring(2, 5) + res.data[0].uid + Math.random().toString(36).substring(2, 20),
+                                uid: res.data[0].uid,
                                 keys: Math.random().toString(36).substring(2, 20),
                                 uname: res.data[0].uname
                             }
 
-                            console.log(res.data);
-                            console.log(userCookie);
+
                             $.cookie('user', JSON.stringify(userCookie), { expires: 10 });
 
                             var check = $('.check').prop('checked');

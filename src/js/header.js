@@ -86,35 +86,42 @@ $(function() {
 
     var strUserStatus = ``;
     var userName = JSON.parse($.cookie('user') || "{}");
-    if (!$.cookie('user')) {
-        strUserStatus = `<a href="./login.html">马上登录 &or;</a>`
-    } else {
-        strUserStatus = `  <div class="user_div ">
-        <span class='spanLive'>${userName.uname} &or;</span>
-        <p class='user_div_p'><button>退出登录</button></p>
-    </div>`
-    }
-    $('.userStatus').html(strUserStatus);
 
-    $('.user_div_p').on('click', 'button', function() {
-        $.ajax({
-            url: "./api/quit",
-            type: 'get',
-        }).then((res) => {
-            console.log(res);
-            if (res.status == 100) {
-                var strUserStatus = `<a href="./login.html">马上登录 &or;</a>`;
-                $('.userStatus').html(strUserStatus);
-                $.cookie('remeber', '', { expires: -10 });
-                $.cookie('user', '', { expires: -10 });
-            }
+
+    $.get('./api/getuser').then((res) => {
+        var isLogin = res.status;
+
+        if (isLogin == -12) {
+            strUserStatus = `<a href="./login.html">马上登录 </a>`
+        } else {
+            strUserStatus = `  <div class="user_div ">
+            <span class='spanLive'>${userName.uname} &or;</span>
+            <p class='user_div_p'><button>退出登录</button></p>
+        </div>`
+        }
+        $('.userStatus').html(strUserStatus);
+
+        $('.user_div_p').on('click', 'button', function() {
+            $.ajax({
+                url: "./api/quit",
+                type: 'get',
+            }).then((res) => {
+                console.log(res);
+                if (res.status == 100) {
+                    var strUserStatus = `<a href="./login.html">马上登录 </a>`;
+                    $('.userStatus').html(strUserStatus);
+                    $.cookie('user', '', { expires: -10 });
+                }
+            })
+        })
+        $('.user_div').on('mouseenter', function() {
+            $(this).addClass('userStatus_div');
+        }).on('mouseleave', function() {
+            $(this).removeClass('userStatus_div');
         })
     })
-    $('.user_div').on('mouseenter', function() {
-        $(this).addClass('userStatus_div');
-    }).on('mouseleave', function() {
-        $(this).removeClass('userStatus_div');
-    })
+
+
 
     $(document).on('scroll', function() {
         if ($(document).scrollTop() >= 170) {
@@ -287,21 +294,7 @@ $(function() {
                 $('.similay').hide();
                 $('.section_box').removeClass('li_hover');
             })
-            $(".section_box").on('click', 'a', function() {
-                var self = this;
 
-                var commodityObj = {}
-                data.forEach((el) => {
-                    if (el.name == $(self).parents('.section_box').find('.section_intr a').text()) {
-                        commodityObj = el;
-                    }
-                })
-                console.log(commodityObj);
-
-                ///--------------------------------------------
-                $.cookie.raw = true;
-                $.cookie('commod', JSON.stringify(commodityObj), { expires: 10 });
-            })
         }
 
     }

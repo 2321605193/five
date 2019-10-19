@@ -23,27 +23,9 @@ function loadData(obj) {
 
         var pid = location.search.split("?")[1].split("=")[1];
 
-        var userCookie = JSON.parse($.cookie('user') || '{}');
-        console.log(userCookie)
-        if (!$.isEmptyObject(userCookie)) {
-            var id = {
-                uid: parseInt(userCookie.uid.substring(3, 4))
-            }
 
-            $.ajax({
-                url: './api/getcart',
-                type: 'post',
-                data: id
-            }).then((res) => {
-                //渲染数据
-                $('.car_List').html('');
 
-                console.log(res)
-                res.data.forEach((el) => {
-                    loadData(el);
-                })
-            })
-        }
+
 
         $.get(`./api/commodInfo/${pid}`).then((res) => {
 
@@ -270,26 +252,23 @@ function loadData(obj) {
                             height: 0
                         },
                         //到达终点后调用的
+
                         onEnd: function() {
-
-
-
+                            var mid = { uid: 0 }
+                            if ($.cookie('user')) {
+                                mid = { uid: parseInt(JSON.parse($.cookie('user') || '{}').uid) };
+                            }
+                            console.log(mid)
                             var carObj = {
                                 pid: commod.pid,
-                                uid: parseInt(JSON.parse($.cookie('user')).uid.substring(3, 4)),
+                                uid: mid.uid,
                                 count: $('.countInt').val()
                             }
-                            console.log(carObj);
-
-
                             $.ajax({
                                 url: './api/addcart',
                                 type: 'post',
                                 data: carObj
                             }).then((res) => {
-
-
-                                console.log(res);
                                 if (res.status == 4) {
                                     $("#msg").css({
                                         left: offset.left - 250,
@@ -313,54 +292,51 @@ function loadData(obj) {
 
                             })
 
-                            var id = { uid: parseInt(JSON.parse($.cookie('user')).uid.substring(3, 4)) }
+                            var id = { uid: 0 };
+                            if ($.cookie('user')) {
+                                id = { uid: parseInt(JSON.parse($.cookie('user') || '{}').uid) };
+                            }
                             $.ajax({
                                 url: './api/getcart',
                                 type: 'post',
                                 data: id
                             }).then((res) => {
                                 //渲染数据
-
-
                                 $('.car_List').html('');
+                                if (res.status > 0) {
+                                    res.data.forEach((el) => {
+                                        loadData(el);
 
+                                        $('.car_left--product>input').on('click', function() {
+                                            var count = 0;
+                                            var sum = 0;
 
-                                res.data.forEach((el) => {
-                                    loadData(el);
-                                })
+                                            for (let i = 0; i < $('.car_left--product').find('input').length; i++) {
+                                                if ($('.car_left--product').find('input')[i].checked) {
+                                                    count++;
+                                                    var inp = $('.car_left--product').find('input')[i];
+                                                    var num = $(inp).siblings('.product').find('.product_count')[0].innerHTML;
+                                                    var price = $(inp).siblings('.product').find('.product_priceNUm')[0].innerHTML;
+                                                    sum += num * price;
+                                                }
+                                            }
+                                            if (count == 0) {
+                                                $('.sumBtn').css('background', '#666').prop({
+                                                    'disabled': true
+                                                })
+                                            } else {
+                                                $('.sumBtn').css('background', '#ff0036').prop({
+                                                    'disabled': false
+                                                });
+                                            }
+                                            $('.carBottom_count').text(count);
+                                            $('.carBottom_priceNUm').text(sum);
 
-                            })
-
-
-
-
-                            $('.car_left--product>input').on('click', function() {
-                                var count = 0;
-                                var sum = 0;
-
-                                for (let i = 0; i < $('.car_left--product').find('input').length; i++) {
-                                    if ($('.car_left--product').find('input')[i].checked) {
-                                        count++;
-                                        var inp = $('.car_left--product').find('input')[i];
-                                        var num = $(inp).siblings('.product').find('.product_count')[0].innerHTML;
-                                        var price = $(inp).siblings('.product').find('.product_priceNUm')[0].innerHTML;
-                                        sum += num * price;
-                                    }
-                                }
-                                if (count == 0) {
-                                    $('.sumBtn').css('background', '#666').prop({
-                                        'disabled': true
+                                        })
                                     })
-                                } else {
-                                    $('.sumBtn').css('background', '#ff0036').prop({
-                                        'disabled': false
-                                    });
                                 }
-                                $('.carBottom_count').text(count);
-                                $('.carBottom_priceNUm').text(sum);
 
                             })
-
                         }
                     });
                 });

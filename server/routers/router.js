@@ -21,7 +21,6 @@ router.post('/reg', (req, res, next) => {
         req.body.uaddress
     ]
 
-    // console.log(parmas)
     db.exec(sql, parmas, (err, result, fileds) => {
         if (err) {
             if (err.message.indexOf('Duplicate') != -1) {
@@ -32,7 +31,7 @@ router.post('/reg', (req, res, next) => {
             return;
 
         }
-        console.log(result);
+
         if (result.affectedRows >= 1) {
             res.json({ msg: '注册成功', status: 2 });
         } else {
@@ -59,7 +58,7 @@ router.post('/login', (req, res, next) => {
             res.json({ msg: 'sql语句有问题', status: -801, err: err.message });
             return;
         }
-        console.log(result);
+
         if (result.length >= 1) {
             req.session['login'] = 'login';
             res.json({ msg: "登录成功", status: 1, data: result });
@@ -152,7 +151,7 @@ router.post('/addcart', checkLogin, (req, res, next) => {
 router.post('/getcart', checkLogin, (req, res, next) => {
     var sql = "  SELECT cars.uid uid,cars.pid pid,`img`,`name`,`count`,`price`,`pur`,`oldPrice` FROM  user, cars, commod  WHERE user.uid = cars.uid AND cars.pid=commod.pid AND cars.uid=?;";
 
-    console.log(req.body.uid)
+
 
     db.exec(sql, [req.body.uid], (err, result) => {
         if (err) {

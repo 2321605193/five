@@ -2,7 +2,7 @@ $(function() {
 
 
     //--------------------------------
-    var id = { uid: parseInt(JSON.parse($.cookie('user')).uid.substring(3, 4)) }
+    var id = { uid: parseInt(JSON.parse($.cookie('user')).uid) }
     $.ajax({
         url: './api/getcart',
         type: 'post',

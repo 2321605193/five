@@ -5,6 +5,7 @@ var toggle = true; //ture为展开
 
 
 
+
         $('.car_ul').on('mouseenter', 'li', function() {
             var cartop = $(this).height() + 20 - $(this).find('.car_position').height();
 
@@ -15,44 +16,64 @@ var toggle = true; //ture为展开
             $(this).find('.car_position').stop().animate({ right: 60 }, 500).fadeOut(100);
         })
 
+        var userCookie = JSON.parse($.cookie('user') || '{}');
+        if (!$.isEmptyObject(userCookie)) {
+            var id = {
+                uid: parseInt(userCookie.uid)
+            }
+            $.ajax({
+                url: './api/getcart',
+                type: 'post',
+                data: id
+            }).then((res) => {
+                //渲染数据
+                $('.car_List').html('');
+                if (res.status > 0) {
+                    res.data.forEach((el) => {
+                        loadData(el);
+                        $('.car_left--product>input').on('click', function() {
+                            var count = 0;
+                            var sum = 0;
 
-        var cookieData = JSON.parse($.cookie('cars') || '[]');
-        $('.car_List').html('');
-        cookieData.forEach(element => {
+                            for (let i = 0; i < $('.car_left--product').find('input').length; i++) {
+                                if ($('.car_left--product').find('input')[i].checked) {
+                                    count++;
+                                    var inp = $('.car_left--product').find('input')[i];
+                                    var num = $(inp).siblings('.product').find('.product_count')[0].innerHTML;
+                                    var price = $(inp).siblings('.product').find('.product_priceNUm')[0].innerHTML;
+                                    sum += num * price;
+                                }
+                            }
 
-            loadData(element);
-            $('.car_left--product>input').on('click', function() {
-                var count = 0;
-                var sum = 0;
+                            if (count == 0) {
+                                $('.sumBtn').css('background', '#666').prop({
+                                    'disabled': true
+                                })
+                            } else {
+                                $('.sumBtn').css('background', '#ff0036').prop({
+                                    'disabled': false
+                                });
+                            }
 
-                for (let i = 0; i < $('.car_left--product').find('input').length; i++) {
-                    if ($('.car_left--product').find('input')[i].checked) {
-                        count++;
-                        var inp = $('.car_left--product').find('input')[i];
-                        var num = $(inp).siblings('.product').find('.product_count')[0].innerHTML;
-                        var price = $(inp).siblings('.product').find('.product_priceNUm')[0].innerHTML;
-                        sum += num * price;
-                    }
-                }
+                            sum = sum.toFixed(2);
 
-                if (count == 0) {
-                    $('.sumBtn').css('background', '#666').prop({
-                        'disabled': true
+                            $('.carBottom_count').text(count);
+                            $('.carBottom_priceNUm').text(sum);
+
+                        })
                     })
-                } else {
-                    $('.sumBtn').css('background', '#ff0036').prop({
-                        'disabled': false
-                    });
                 }
-
-                sum = sum.toFixed(2);
-
-                $('.carBottom_count').text(count);
-                $('.carBottom_priceNUm').text(sum);
-
             })
+        }
 
-        });
+        // var cookieData = JSON.parse($.cookie('cars') || '[]');
+        // $('.car_List').html('');
+        // cookieData.forEach(element => {
+
+        //     loadData(element);
+
+
+        // });
 
         //显示隐藏购物车列表
         $('.toggleCar').on('click', function() {
