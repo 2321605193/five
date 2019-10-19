@@ -148,6 +148,23 @@ router.post('/addcart', checkLogin, (req, res, next) => {
     })
 })
 
+router.post('/delectcart', (req, res, next) => {
+    var sql = ' delete from `cars` where uid = ? and  pid=?;';
+    var parmas = [
+        req.body.uid,
+        req.body.pid
+    ]
+    db.exec(sql, parmas, (err, result) => {
+        if (err) {
+            console.log('删除失败' + err.message);
+            res.json({ msg: '查询购物车失败', status: -1101 });
+            return;
+        }
+        res.json({ msg: '删除成功', status: 1101 });
+    })
+
+});
+
 router.post('/getcart', checkLogin, (req, res, next) => {
     var sql = "  SELECT cars.uid uid,cars.pid pid,`img`,`name`,`count`,`price`,`pur`,`oldPrice` FROM  user, cars, commod  WHERE user.uid = cars.uid AND cars.pid=commod.pid AND cars.uid=?;";
 

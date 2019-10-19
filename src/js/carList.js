@@ -119,12 +119,34 @@ $(function() {
 
 
             $('.delet').on('click', function() {
+
+
+
+
                 var uname = $(this).parents('.commondity').find('.uname').text();
+                var newCarList = {}
                 carList.forEach((el, index, arr) => {
                     if (el.name == uname) {
+                        newCarList = {
+                            uid: el.uid,
+                            pid: el.pid
+                        }
                         arr.splice(index, 1);
                     }
                 })
+
+
+
+                $.ajax({
+                    url: './api/delectcart',
+                    type: 'post',
+                    data: newCarList
+                }).then((res) => {
+                    console.log(res);
+                })
+
+
+
 
                 $(this).parents('.commondity').remove();
                 if (carList.length == 0) {
@@ -148,6 +170,9 @@ $(function() {
                 $('.all').find('input').prop('checked', count == $('.commondityList').find('input[type="checkbox"]').length);
                 $('.carList_totalPrice').text(sum.toFixed(2));
             })
+
+
+
 
             $('.all').children('input').on('click', function() {
                 $('.commondity').find('input[type="checkbox"]').prop('checked', $(this).prop('checked'));
