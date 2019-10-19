@@ -1,19 +1,23 @@
 module.exports = {
     checkLogin: function checkLogin(req, res, next) {
-
-        if (!req.session["login"]) {
-            res.json({ msg: '未登录', status: 0 });
+        if (!req.session['login']) {
+            res.json({ msg: '长时间未操作，请重新登录', status: 0 });
             return;
         }
-        req.session.maxAge = 100 * 60 * 1;
-        next();
 
+        // req.session._garbage = Date();
+        // req.session.touch();
+        next();
     },
     checkNotLogin: function checkNotLogin(req, res, next) {
-        if (req.session.user) {
-            req.flash('error', '已登录');
-            return res.redirect('back') // 返回之前的页面
-        }
-        next()
+        next();
     }
+}
+
+
+function isEmptyObject(e) {
+    var t;
+    for (t in e)
+        return !1;
+    return !0
 }

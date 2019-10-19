@@ -47,7 +47,7 @@ router.post('/login', (req, res, next) => {
 
     //准备sql语句
     var sql = ' SELECT * FROM  USER  WHERE uname=? AND upwd=?';
-    console.log(111)
+
     var parmas = [
         req.body.uname,
         md5(md5(req.body.upwd) + key)
@@ -105,6 +105,7 @@ router.post('/addcart', checkLogin, (req, res, next) => {
         req.body.count
     ]
 
+
     var querySql = 'select * from cars where uid=? and pid = ?;';
 
     db.exec(querySql, [req.body.uid, req.body.pid], (err, result) => {
@@ -117,7 +118,6 @@ router.post('/addcart', checkLogin, (req, res, next) => {
             var updateSql = 'update cars set count=? where uid=? and pid=?;';
             db.exec(updateSql, [req.body.count, req.body.uid, req.body.pid], (err, result) => {
                 if (err) {
-                    console.log(err.message);
                     res.json({ msg: '更新购物车失败', status: -501, err: err.message });
                     return;
                 }
@@ -132,6 +132,7 @@ router.post('/addcart', checkLogin, (req, res, next) => {
 
         } else {
             var insertSql = "INSERT INTO cars (uid,pid,count)  values (?,?,?);";
+
             db.exec(insertSql, params, (err, result) => {
                 if (err) {
                     res.json({ msg: '加入购物车失败', status: -501, err: err.message });
@@ -151,6 +152,7 @@ router.post('/addcart', checkLogin, (req, res, next) => {
 router.post('/getcart', checkLogin, (req, res, next) => {
     var sql = "  SELECT cars.uid uid,cars.pid pid,`img`,`name`,`count`,`price`,`pur`,`oldPrice` FROM  user, cars, commod  WHERE user.uid = cars.uid AND cars.pid=commod.pid AND cars.uid=?;";
 
+    console.log(req.body.uid)
 
     db.exec(sql, [req.body.uid], (err, result) => {
         if (err) {
@@ -165,7 +167,7 @@ router.post('/getcart', checkLogin, (req, res, next) => {
     })
 })
 
-router.get('/quit', checkLogin, (req, res, next) => {
+router.get('/quit', (req, res, next) => {
     req.session["login"] = null;
     res.json({
         msg: '退出成功',
@@ -173,6 +175,13 @@ router.get('/quit', checkLogin, (req, res, next) => {
     })
 })
 
+router.get('/getuser', (req, res, next) => {
+    if (!req.session['login']) {
+        res.json({ msg: '获取用户名失败', status: -12 });
+    } else {
+        res.json({ msg: '获取用户名成功', status: 12 });
+    }
+})
 module.exports = {
     router
 }

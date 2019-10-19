@@ -1,8 +1,9 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import cookieSeesion from 'cookie-session';
+import cookieSeesion from 'express-session';
 import bodyParser from 'body-parser';
 import multer from 'multer';
+
 
 var app = express();
 
@@ -16,10 +17,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use(cookieSeesion({
-    name: 'session',
-    keys: ["abb", "bcc"],
-    maxAge: 100 * 60 * 1,
-
+    name: 'junjun',
+    secret: ["abb", "bcc"],
+    resave: false,
+    rolling: true,
+    cookie: { maxAge: 1000 * 60 * 20, }
 }))
 
 const upload = multer({ dest: '../src/upload' });
