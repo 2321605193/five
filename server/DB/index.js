@@ -9,7 +9,6 @@ connt.connect(function(err) {
 
 function exec(sql, parmas, callback) {
 
-
     connt.query(sql, parmas, (err, result, fileds) => {
         callback(err, result, fileds);
     });

@@ -167,9 +167,7 @@ router.post('/delectcart', (req, res, next) => {
 
 router.post('/getcart', checkLogin, (req, res, next) => {
     var sql = "  SELECT cars.uid uid,cars.pid pid,`img`,`name`,`count`,`price`,`pur`,`oldPrice` FROM  user, cars, commod  WHERE user.uid = cars.uid AND cars.pid=commod.pid AND cars.uid=?;";
-
-
-
+    
     db.exec(sql, [req.body.uid], (err, result) => {
         if (err) {
             console.log(err.message);
